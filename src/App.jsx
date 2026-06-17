@@ -87,7 +87,7 @@ function App() {
     <div className="app-container">
       <header className="hero-section">
         <div className="hero-content">
-          <img src="/hero-title.png" alt="我們是中央 其他都是地方" style={{ maxWidth: '100%', height: 'auto', maxHeight: '250px', filter: 'drop-shadow(0 10px 15px rgba(0,0,0,0.5))' }} onError={(e) => {
+          <img src={`${import.meta.env.BASE_URL}hero-title.png`} alt="我們是中央 其他都是地方" style={{ maxWidth: '100%', height: 'auto', maxHeight: '250px', filter: 'drop-shadow(0 10px 15px rgba(0,0,0,0.5))' }} onError={(e) => {
                 e.target.style.display = 'none';
                 e.target.parentElement.innerHTML += '<div style="background:rgba(255,255,255,0.1);padding:2rem;text-align:center;border-radius:8px;border:1px dashed rgba(255,255,255,0.3);color:#fff;">[請將標題圖片命名為 hero-title.png 並放入 public 資料夾]</div>';
               }} />
@@ -234,11 +234,11 @@ function App() {
             
             {/* Image placeholders - users need to replace src with their actual images */}
             <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem', marginBottom: '1.5rem' }}>
-              <img src="/size-chart.png" alt="社服尺寸表" className="reference-image" onError={(e) => {
+              <img src={`${import.meta.env.BASE_URL}size-chart.png`} alt="社服尺寸表" className="reference-image" onError={(e) => {
                 e.target.style.display = 'none';
                 e.target.parentElement.innerHTML += '<div style="background:#eee;padding:2rem;text-align:center;border-radius:8px;border:1px dashed #ccc;color:#666;">[請將您的尺寸表圖片命名為 size-chart.png 並放入 public 資料夾]</div>';
               }} />
-              <img src="/tshirt-design.png" alt="社服設計圖" className="reference-image" onError={(e) => {
+              <img src={`${import.meta.env.BASE_URL}tshirt-design.png`} alt="社服設計圖" className="reference-image" onError={(e) => {
                 e.target.style.display = 'none';
                 e.target.parentElement.innerHTML += '<div style="background:#eee;padding:2rem;text-align:center;border-radius:8px;border:1px dashed #ccc;color:#666;">[請將您的衣服設計圖命名為 tshirt-design.png 並放入 public 資料夾]</div>';
               }} />
