@@ -9,9 +9,13 @@ function App() {
     studentId: '',
     emergencyContact: '',
     size: '',
+    addNameOnShirt: '否',
+    shirtNameText: '',
     distance: '',
     pace: '',
     healthDeclaration: false,
+    remittanceDate: '',
+    remittanceAccountLast5: '',
   });
 
   const [status, setStatus] = useState('idle'); // idle, submitting, success, error
@@ -71,7 +75,8 @@ function App() {
                 setStatus('idle');
                 setFormData({
                   name: '', gender: '', phone: '', email: '', studentId: '', 
-                  emergencyContact: '', size: '', distance: '', pace: '', healthDeclaration: false
+                  emergencyContact: '', size: '', addNameOnShirt: '否', shirtNameText: '', distance: '', pace: '', healthDeclaration: false,
+                  remittanceDate: '', remittanceAccountLast5: ''
                 });
               }}
             >
@@ -266,6 +271,35 @@ function App() {
               </select>
             </div>
 
+            <div className="form-group" style={{ marginTop: '1.5rem' }}>
+              <label className="form-label">社服要加上學號/姓名 <span className="required">*</span></label>
+              <div className="radio-group" style={{ flexDirection: 'row', marginTop: '0.5rem' }}>
+                <label className="radio-label">
+                  <input type="radio" name="addNameOnShirt" value="是" required checked={formData.addNameOnShirt === '是'} onChange={handleChange} />
+                  是
+                </label>
+                <label className="radio-label">
+                  <input type="radio" name="addNameOnShirt" value="否" required checked={formData.addNameOnShirt === '否'} onChange={handleChange} />
+                  否
+                </label>
+              </div>
+            </div>
+
+            {formData.addNameOnShirt === '是' && (
+              <div className="form-group">
+                <label className="form-label">學號+姓名(英文名 or 中文名) <span className="required">*</span></label>
+                <input 
+                  type="text" 
+                  name="shirtNameText" 
+                  className="form-control" 
+                  required 
+                  value={formData.shirtNameText}
+                  onChange={handleChange}
+                  placeholder="例如: 114450012 王小明"
+                />
+              </div>
+            )}
+
             <hr style={{ border: '0', borderTop: '1px solid var(--border)', margin: '2rem 0' }} />
 
             <h3 style={{ marginBottom: '1.5rem', color: 'var(--primary)' }}>🏃 3. 跑步背景與健康聲明</h3>
@@ -308,6 +342,39 @@ function App() {
                 value={formData.pace}
                 onChange={handleChange}
                 placeholder="例如: 10K平均跑速 6分半"
+              />
+            </div>
+
+            <hr style={{ border: '0', borderTop: '1px solid var(--border)', margin: '2rem 0' }} />
+
+            <h3 style={{ marginBottom: '1.5rem', color: 'var(--primary)' }}>💰 4. 匯款資料回報</h3>
+            <p style={{ fontSize: '0.95rem', marginBottom: '1rem', color: 'var(--text-muted)' }}>
+              請於填表前或填表後儘速完成繳費（社費：3,000元），並留下您的匯款資訊以供對帳。
+            </p>
+
+            <div className="form-group">
+              <label className="form-label">匯款日期 <span className="required">*</span></label>
+              <input 
+                type="date" 
+                name="remittanceDate" 
+                className="form-control" 
+                required 
+                value={formData.remittanceDate}
+                onChange={handleChange}
+              />
+            </div>
+
+            <div className="form-group">
+              <label className="form-label">匯款帳號末5碼 <span className="required">*</span></label>
+              <input 
+                type="text" 
+                name="remittanceAccountLast5" 
+                className="form-control" 
+                required 
+                maxLength="5"
+                value={formData.remittanceAccountLast5}
+                onChange={handleChange}
+                placeholder="例如: 12345"
               />
             </div>
 
