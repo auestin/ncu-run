@@ -234,6 +234,7 @@ function App() {
             <h3 style={{ marginBottom: '1.5rem', color: 'var(--primary)' }}>👕 2. 社服尺寸調查</h3>
             <p style={{ fontSize: '0.95rem', marginBottom: '1rem' }}>
               既然報名有送社服，請參考下方尺寸表填寫。<br/>
+              📐 <strong>尺寸表為「社服平放測量胸部尺寸」</strong>，請學長姊特別留意！<br/>
               💡 <strong style={{ color: 'var(--error)' }}>貼心提醒：尺寸送出後恕難修改。</strong>
             </p>
             
