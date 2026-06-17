@@ -28,7 +28,7 @@ function App() {
     e.preventDefault();
     setStatus('submitting');
     
-    const scriptURL = 'https://script.google.com/macros/s/AKfycbxByDjxD1sDkfOizDIf8bTXvVlMpcmc1PFSXLTOq6YzUu3iG3yQK9DBb79dQyvwOUmPIA/exec';
+    const scriptURL = 'https://script.google.com/macros/s/AKfycbxgDcazUBarn6qie4_HM76TsTstSQ5mnGzRnNuZPjM182YBGKZpeLjM1howPHDC-K3q/exec';
     
     try {
       const data = new FormData();
