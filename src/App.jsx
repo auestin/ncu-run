@@ -296,7 +296,7 @@ function App() {
                   required 
                   value={formData.shirtNameText}
                   onChange={handleChange}
-                  placeholder="例如: 114450012 王小明"
+                  placeholder="例如: 114450012 中央蔡依玲 (名字可自由發揮，上限五個字)"
                 />
               </div>
             )}
