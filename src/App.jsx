@@ -40,6 +40,10 @@ function App() {
       const data = new FormData();
       Object.keys(formData).forEach(key => data.append(key, formData[key]));
       
+      const shirtCount = Number(formData.extraShirtCount) || 0;
+      const totalAmount = formData.isNotJoining ? (shirtCount * 599) : (3000 + shirtCount * 599);
+      data.append('totalAmount', totalAmount);
+      
       await fetch(scriptURL, { 
         method: 'POST', 
         body: data,
