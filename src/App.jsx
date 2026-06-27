@@ -17,6 +17,7 @@ function App() {
     remittanceDate: '',
     remittanceAccountLast5: '',
     isNotJoining: false,
+    extraShirtCount: 0,
   });
 
   const [status, setStatus] = useState('idle'); // idle, submitting, success, error
@@ -77,7 +78,7 @@ function App() {
                 setFormData({
                   name: '', gender: '', phone: '', email: '', studentId: '', 
                   emergencyContact: '', size: '', addNameOnShirt: '否', shirtNameText: '', distance: '', pace: '', healthDeclaration: false,
-                  remittanceDate: '', remittanceAccountLast5: '', isNotJoining: false
+                  remittanceDate: '', remittanceAccountLast5: '', isNotJoining: false, extraShirtCount: 0
                 });
               }}
             >
@@ -302,6 +303,27 @@ function App() {
               </div>
             )}
 
+            <div className="form-group" style={{ marginTop: '1.5rem', background: '#f8fafc', padding: '1rem', borderRadius: '8px', border: '1px solid var(--border)' }}>
+              <label className="form-label">社服加購數量 <span className="required">*</span></label>
+              <div className="hint-text" style={{ marginBottom: '1rem' }}>
+                {formData.isNotJoining 
+                  ? '不入社購買衣服，每件皆為 599 元。填寫購買數量（至少需購買 1 件）。'
+                  : '入社即贈送 1 件。若需額外加購（每件 599 元），請填寫加購數量；無加購請填 0。'}
+                <br/>
+                ※ 註：同一張表單只能製作相同尺寸與相同名字的衣服。如需不同尺寸/名字請分開填寫。
+              </div>
+              <input 
+                type="number" 
+                name="extraShirtCount" 
+                className="form-control" 
+                required 
+                min={formData.isNotJoining ? "1" : "0"}
+                value={formData.extraShirtCount}
+                onChange={handleChange}
+                style={{ maxWidth: '200px' }}
+              />
+            </div>
+
             <hr style={{ border: '0', borderTop: '1px solid var(--border)', margin: '2rem 0' }} />
 
             <h3 style={{ marginBottom: '1.5rem', color: 'var(--primary)' }}>🏃 3. 跑步背景與健康聲明</h3>
@@ -352,8 +374,8 @@ function App() {
             <h3 style={{ marginBottom: '1.5rem', color: 'var(--primary)' }}>💰 4. 匯款資料回報</h3>
             <p style={{ fontSize: '0.95rem', marginBottom: '1rem', color: 'var(--text-muted)' }}>
               {formData.isNotJoining 
-                ? '請於填表前或填表後儘速完成繳費（僅加購衣服：599元），並留下您的匯款資訊以供對帳。'
-                : '請於填表前或填表後儘速完成繳費（社費：3,000元），並留下您的匯款資訊以供對帳。'}
+                ? `請於填表前或填表後儘速完成繳費（衣服 ${formData.extraShirtCount || 0} 件，總金額：${(Number(formData.extraShirtCount) || 0) * 599} 元），並留下您的匯款資訊以供對帳。`
+                : `請於填表前或填表後儘速完成繳費（社費 3,000 元 + 額外加購 ${(Number(formData.extraShirtCount) || 0) * 599} 元 = 總金額：${3000 + (Number(formData.extraShirtCount) || 0) * 599} 元），並留下您的匯款資訊以供對帳。`}
             </p>
 
             <div className="form-group">
