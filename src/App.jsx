@@ -377,10 +377,25 @@ function App() {
 
             <h3 style={{ marginBottom: '1.5rem', color: 'var(--primary)' }}>💰 4. 匯款資料回報</h3>
             <p style={{ fontSize: '0.95rem', marginBottom: '1rem', color: 'var(--text-muted)' }}>
-              {formData.isNotJoining 
-                ? `請於填表前或填表後儘速完成繳費（衣服 ${formData.extraShirtCount || 0} 件，總金額：${(Number(formData.extraShirtCount) || 0) * 599} 元），並留下您的匯款資訊以供對帳。`
-                : `請於填表前或填表後儘速完成繳費（社費 3,000 元 + 額外加購 ${(Number(formData.extraShirtCount) || 0) * 599} 元 = 總金額：${3000 + (Number(formData.extraShirtCount) || 0) * 599} 元），並留下您的匯款資訊以供對帳。`}
+              請於填表前或填表後儘速完成繳費，並留下您的匯款資訊以供對帳。
             </p>
+
+            <div style={{ backgroundColor: '#f0fdf4', border: '2px solid #22c55e', borderRadius: '12px', padding: '1.5rem', marginBottom: '2rem', textAlign: 'center', boxShadow: '0 4px 6px -1px rgba(34, 197, 94, 0.1)' }}>
+              <div style={{ fontSize: '1.1rem', color: '#166534', marginBottom: '0.5rem', fontWeight: 'bold' }}>
+                總計應繳金額
+              </div>
+              <div style={{ fontSize: '3rem', color: '#15803d', fontWeight: '900', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: '0.5rem', letterSpacing: '-1px' }}>
+                <span style={{ fontSize: '1.5rem', fontWeight: 'bold', alignSelf: 'flex-start', marginTop: '0.5rem' }}>NT$</span>
+                {formData.isNotJoining 
+                  ? (Number(formData.extraShirtCount) || 0) * 599
+                  : 3000 + (Number(formData.extraShirtCount) || 0) * 599}
+              </div>
+              <div style={{ fontSize: '0.95rem', color: '#166534', marginTop: '0.5rem', fontWeight: '500' }}>
+                {formData.isNotJoining 
+                  ? `(衣服 ${formData.extraShirtCount || 0} 件)`
+                  : `(社費 3000 元 + 加購 ${formData.extraShirtCount || 0} 件衣服)`}
+              </div>
+            </div>
 
             <div className="form-group">
               <label className="form-label">匯款日期 <span className="required">*</span></label>
