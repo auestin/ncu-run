@@ -16,6 +16,7 @@ function App() {
     healthDeclaration: false,
     remittanceDate: '',
     remittanceAccountLast5: '',
+    isNotJoining: false,
   });
 
   const [status, setStatus] = useState('idle'); // idle, submitting, success, error
@@ -76,7 +77,7 @@ function App() {
                 setFormData({
                   name: '', gender: '', phone: '', email: '', studentId: '', 
                   emergencyContact: '', size: '', addNameOnShirt: '否', shirtNameText: '', distance: '', pace: '', healthDeclaration: false,
-                  remittanceDate: '', remittanceAccountLast5: ''
+                  remittanceDate: '', remittanceAccountLast5: '', isNotJoining: false
                 });
               }}
             >
@@ -215,13 +216,13 @@ function App() {
             </div>
 
             <div className="form-group">
-              <label className="form-label">緊急聯絡人姓名與電話 <span className="required">*</span></label>
+              <label className="form-label">緊急聯絡人姓名與電話 {!formData.isNotJoining && <span className="required">*</span>}</label>
               <div className="hint-text">路跑社團涉及戶外運動，這點非常重要！</div>
               <input 
                 type="text" 
                 name="emergencyContact" 
                 className="form-control" 
-                required 
+                required={!formData.isNotJoining}
                 value={formData.emergencyContact}
                 onChange={handleChange}
                 placeholder="例如: 王小明 0987654321"
@@ -309,26 +310,26 @@ function App() {
             </p>
 
             <div className="form-group">
-              <label className="form-label">目前常跑距離 <span className="required">*</span></label>
+              <label className="form-label">目前常跑距離 {!formData.isNotJoining && <span className="required">*</span>}</label>
               <div className="radio-group">
                 <label className="radio-label">
-                  <input type="radio" name="distance" value="歡樂健康跑" required checked={formData.distance === '歡樂健康跑'} onChange={handleChange} />
+                  <input type="radio" name="distance" value="歡樂健康跑" required={!formData.isNotJoining} checked={formData.distance === '歡樂健康跑'} onChange={handleChange} />
                   歡樂健康跑
                 </label>
                 <label className="radio-label">
-                  <input type="radio" name="distance" value="5公里" required checked={formData.distance === '5公里'} onChange={handleChange} />
+                  <input type="radio" name="distance" value="5公里" required={!formData.isNotJoining} checked={formData.distance === '5公里'} onChange={handleChange} />
                   5公里
                 </label>
                 <label className="radio-label">
-                  <input type="radio" name="distance" value="10公里" required checked={formData.distance === '10公里'} onChange={handleChange} />
+                  <input type="radio" name="distance" value="10公里" required={!formData.isNotJoining} checked={formData.distance === '10公里'} onChange={handleChange} />
                   10公里
                 </label>
                 <label className="radio-label">
-                  <input type="radio" name="distance" value="半馬" required checked={formData.distance === '半馬'} onChange={handleChange} />
+                  <input type="radio" name="distance" value="半馬" required={!formData.isNotJoining} checked={formData.distance === '半馬'} onChange={handleChange} />
                   半馬
                 </label>
                 <label className="radio-label">
-                  <input type="radio" name="distance" value="全馬" required checked={formData.distance === '全馬'} onChange={handleChange} />
+                  <input type="radio" name="distance" value="全馬" required={!formData.isNotJoining} checked={formData.distance === '全馬'} onChange={handleChange} />
                   全馬
                 </label>
               </div>
@@ -350,7 +351,9 @@ function App() {
 
             <h3 style={{ marginBottom: '1.5rem', color: 'var(--primary)' }}>💰 4. 匯款資料回報</h3>
             <p style={{ fontSize: '0.95rem', marginBottom: '1rem', color: 'var(--text-muted)' }}>
-              請於填表前或填表後儘速完成繳費（社費：3,000元），並留下您的匯款資訊以供對帳。
+              {formData.isNotJoining 
+                ? '請於填表前或填表後儘速完成繳費（僅加購衣服：599元），並留下您的匯款資訊以供對帳。'
+                : '請於填表前或填表後儘速完成繳費（社費：3,000元），並留下您的匯款資訊以供對帳。'}
             </p>
 
             <div className="form-group">
@@ -380,13 +383,13 @@ function App() {
             </div>
 
             <div className="form-group" style={{ marginTop: '2rem', background: '#fff1f2', padding: '1.5rem', borderRadius: '8px', border: '1px solid #fecdd3' }}>
-              <label className="form-label" style={{ color: '#be123c' }}>健康狀況聲明 <span className="required">*</span></label>
+              <label className="form-label" style={{ color: '#be123c' }}>健康狀況聲明 {!formData.isNotJoining && <span className="required">*</span>}</label>
               <div className="checkbox-group" style={{ marginTop: '1rem' }}>
                 <label className="checkbox-label" style={{ alignItems: 'flex-start' }}>
                   <input 
                     type="checkbox" 
                     name="healthDeclaration" 
-                    required 
+                    required={!formData.isNotJoining}
                     checked={formData.healthDeclaration}
                     onChange={handleChange}
                     style={{ marginTop: '0.25rem' }}
@@ -396,6 +399,24 @@ function App() {
                   </span>
                 </label>
               </div>
+            </div>
+
+            <div className="form-group" style={{ marginTop: '2rem', padding: '1.5rem', borderRadius: '8px', border: '1px solid var(--border)', backgroundColor: '#f8fafc' }}>
+              <label className="checkbox-label" style={{ alignItems: 'flex-start' }}>
+                <input 
+                  type="checkbox" 
+                  name="isNotJoining" 
+                  checked={formData.isNotJoining}
+                  onChange={handleChange}
+                  style={{ marginTop: '0.25rem' }}
+                />
+                <span style={{ fontSize: '1rem', fontWeight: 'bold', color: 'var(--text-main)' }}>
+                  我不入社，僅加購社服（一件 599 元）
+                  <div style={{ fontSize: '0.85rem', fontWeight: 'normal', color: 'var(--text-muted)', marginTop: '0.25rem' }}>
+                    勾選此項後，上方的「緊急聯絡人」、「跑步組別」與「健康狀況聲明」將改為不需填寫。
+                  </div>
+                </span>
+              </label>
             </div>
 
             <div style={{ marginTop: '3rem' }}>
