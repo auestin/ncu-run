@@ -208,7 +208,7 @@ function App() {
             </div>
 
             <div className="form-group">
-              <label className="form-label">學號 <span className="required">*</span></label>
+              <label className="form-label">學年 <span className="required">*</span></label>
               <input 
                 type="text" 
                 name="studentId" 
@@ -216,7 +216,7 @@ function App() {
                 required 
                 value={formData.studentId}
                 onChange={handleChange}
-                placeholder="例如: 114450012"
+                placeholder="例如: 114"
               />
             </div>
 
