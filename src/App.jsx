@@ -150,7 +150,7 @@ function App() {
         <div className="card" style={{ animationDelay: '0.2s' }}>
           <h2 className="card-title">📝 報名資料填寫</h2>
           <p style={{ color: 'var(--error)', marginBottom: '1.5rem', fontSize: '0.9rem', fontWeight: '500' }}>
-            ※ 因社服客製化需要製作時間，名額有限，請學長姊於 2026年9月30日前報名，手腳要快唷！
+            ※ 因社服為個人專屬訂製，將依報名順序陸續製作，越早加入，越早擁有專屬漾跑社服！
           </p>
 
           <form onSubmit={handleSubmit}>
