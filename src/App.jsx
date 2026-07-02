@@ -140,6 +140,7 @@ function App() {
           
           <div className="info-block" style={{ backgroundColor: '#fdf8e9', borderLeftColor: '#f59e0b' }}>
             <h3 style={{ marginBottom: '1rem', color: '#b45309' }}>💰 繳費資訊</h3>
+            <p style={{ marginBottom: '0.5rem', fontWeight: 'bold' }}>會員期間: 2026/9/1~2027/8/31</p>
             <p><strong>社費：</strong> 3,000 / year</p>
             <p style={{ marginTop: '0.5rem' }}><strong>漾跑社收款帳號銀行：</strong></p>
             <p>合作金庫(006) 龍潭分行<br/>戶名: 簡雅惠<br/>銀行帳號: 0161-765-421717</p>
